@@ -41,9 +41,10 @@ public class GyroManager : MonoBehaviour
         {
             gyro = Input.gyro;
             gyro.enabled = true;
+            gyroActive = gyro.enabled;
 
         }
-        gyroActive = gyro.enabled;
+       
     }
 
     // Start is called before the first frame update
@@ -53,8 +54,18 @@ public class GyroManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        if(gyroActive)
+        {
+            rotation = gyro.attitude;
+            
+        }
         
     }
+
+    public Quaternion GetGyroRotation()
+    {
+        return rotation;
+    }    
 }
